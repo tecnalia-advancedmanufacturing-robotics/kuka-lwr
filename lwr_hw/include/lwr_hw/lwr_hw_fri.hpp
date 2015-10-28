@@ -260,6 +260,8 @@ private:
     return;
   }
 
+public:
+  
   void stopFRI()
   {
     // wait until FRI enters in command mode
