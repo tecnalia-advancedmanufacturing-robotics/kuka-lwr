@@ -19,6 +19,8 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
 )
 
+find_package(gazebo REQUIRED)
+
 add_definitions (-std=c++11)
 
 catkin_package(
@@ -48,6 +50,7 @@ catkin_package(
 
 include_directories(include
   ${Boost_INCLUDE_DIR}
+  ${GAZEBO_INCLUDE_DIRS}
   ${catkin_INCLUDE_DIRS}
 )
 
@@ -79,6 +82,7 @@ target_link_libraries(lwr_hw_fri_node
   friremote
   ${PROJECT_NAME}
   ${catkin_LIBRARIES}
+  ${GAZEBO_LIBRARIES}
 )
 
 # Standford FRILibrary (support in PROGRESS)
@@ -106,13 +110,11 @@ target_link_libraries(lwr_hw_fril_node
   fril
   ${PROJECT_NAME}
   ${catkin_LIBRARIES}
+  ${GAZEBO_LIBRARIES}
 )
 
 ## SIMULATION
-# lwr hw sim gazebo plugin 
-find_package(gazebo REQUIRED)
-include_directories(${GAZEBO_INCLUDE_DIRS})
-link_directories(${GAZEBO_LIBRARY_DIRS})
+# lwr hw sim gazebo plugin
 add_library(lwr_hw_gazebo_plugin  src/lwr_hw_gazebo_plugin.cpp
   include/${PROJECT_NAME}/lwr_hw_gazebo.hpp
 )
