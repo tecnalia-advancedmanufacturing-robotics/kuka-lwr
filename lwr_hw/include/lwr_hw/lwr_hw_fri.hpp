@@ -50,6 +50,17 @@ public:
       << FRI_MAJOR_VERSION << "." << FRI_SUB_VERSION << "." <<FRI_DATAGRAM_ID_CMD << "." <<FRI_DATAGRAM_ID_MSR 
       << " Interface for LWR ROS server" << std::endl;
 
+    if( device_->doReceiveData() != 0 )
+    {
+      std::cout << "Failed to receive FRI data" << std::endl;
+    }
+    for(int j = 0; j < n_joints_; j++)
+    {
+      joint_position_command_[j] = device_->getMsrMsrJntPosition()[j];
+    }
+
+
+
     std::cout << "Checking if the robot is Stopped..." << std::endl;
     if( device_->getState() == FRI_STATE_OFF )
     {
