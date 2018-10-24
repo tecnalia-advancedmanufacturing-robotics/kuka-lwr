@@ -139,8 +139,13 @@ install(TARGETS lwr_hw_fri_node
 install(DIRECTORY launch/
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/launch)
 
-install(DIRECTORY include/lwr_hw/
-  DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION})
+## Install project namespaced headers
+install(DIRECTORY include/${PROJECT_NAME}/
+  DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
+  FILES_MATCHING PATTERN "*.h"
+  PATTERN ".svn" EXCLUDE)
 
 install(DIRECTORY include/cartesian_hardware_interface/
-  DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}/../cartesian_hardware_interface)
+  DESTINATION ${CATKIN_GLOBAL_INCLUDE_DESTINATION}/cartesian_hardware_interface/
+  FILES_MATCHING PATTERN "*.h"
+  PATTERN ".svn" EXCLUDE)
